@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #EAEBED;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.dmsfinal.LogInController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #006989; -fx-background-radius: 4; -fx-translate-x: 250;">
+         <HBox.margin>
+            <Insets bottom="50.0" top="50.0" />
+         </HBox.margin>
+         <padding>
+            <Insets bottom="30.0" />
+         </padding>
+         <children>
+            <Label fx:id="label" alignment="CENTER" textAlignment="CENTER" textFill="#b0a31a">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Label>
+            <Label alignment="CENTER" text="Project Name" textAlignment="CENTER" textFill="#e2e2e2">
+               <VBox.margin>
+                  <Insets top="6.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <TextField fx:id="checkProjectNameField" promptText="e.g. Task Manager" style="-fx-background-radius: 0;">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="3.0" />
+               </VBox.margin>
+            </TextField>
+            <Label alignment="CENTER" text="Username" textAlignment="CENTER" textFill="#e2e2e2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="checkUsernameField" promptText="e.g. Rene" style="-fx-background-radius: 0;">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="3.0" />
+               </VBox.margin></TextField>
+            <Label alignment="CENTER" text="Password" textAlignment="CENTER" textFill="#e2e2e2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin></Label>
+            <PasswordField fx:id="checkPasswordField" style="-fx-background-radius: 0;">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="3.0" />
+               </VBox.margin></PasswordField>
+            <Button fx:id="toApp" mnemonicParsing="false" style="-fx-background-radius: 0; -fx-background-color: #DE6C83;" text="Sign In" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+            <Label alignment="CENTER" text="Do not have an account?" textAlignment="CENTER" textFill="#a3bac3">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin></Label>
+            <Button fx:id="toCreateAccountBtn" mnemonicParsing="false" onAction="#toSignUp" style="-fx-background-radius: 0; -fx-background-color: #A3BAC3;" text="Sign Up" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="4.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Button>
+         </children></VBox>
+   </children>
+</HBox>
