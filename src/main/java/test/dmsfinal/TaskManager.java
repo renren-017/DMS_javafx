@@ -12,7 +12,7 @@ public class TaskManager extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("createAccount.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
         stage.setTitle("Hello!");
         stage.setScene(new Scene(root, 800, 500));
         stage.show();

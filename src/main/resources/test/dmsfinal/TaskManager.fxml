@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.2"
+      fx:controller="test.dmsfinal.TaskManagerController" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="WELCOME :)">
+         <font>
+            <Font size="96.0" />
+         </font>
+      </Label>
+   </children>
+</HBox>

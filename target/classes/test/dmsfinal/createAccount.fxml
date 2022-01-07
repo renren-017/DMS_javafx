@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #EAEBED;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.dmsfinal.createAccountController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #EAEBED;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.dmsfinal.CreateAccountController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #006989; -fx-translate-x: 250; -fx-background-radius: 4;">
          <HBox.margin>
@@ -52,7 +52,7 @@
                   <Insets left="15.0" right="15.0" top="3.0" />
                </VBox.margin>
             </PasswordField>
-            <Button fx:id="createAccountBtn" mnemonicParsing="false" onAction="#setUserData" style="-fx-background-radius: 0; -fx-background-color: #01A7C2; -fx-background-radius: 0;" text="Create Account" textFill="WHITE">
+            <Button fx:id="toCreateAccountBtn" mnemonicParsing="false" onAction="#setUserData" style="-fx-background-radius: 0; -fx-background-color: #01A7C2; -fx-background-radius: 0;" text="Create Account" textFill="WHITE">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
