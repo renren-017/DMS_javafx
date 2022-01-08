@@ -49,8 +49,8 @@ public class CreateAccountController implements Initializable {
         } else {
             warningLabel.setText("");
 
-//            JavaPostgres.writeUserToDatabase(usernameField.getText(),
-//                    passwordField.getText(), projectNameField.getText());
+            JavaPostgres.writeUserToDatabase(usernameField.getText(),
+                    passwordField.getText(), projectNameField.getText());
 
             System.out.println("User " + usernameField.getText() + " successfully created");
 

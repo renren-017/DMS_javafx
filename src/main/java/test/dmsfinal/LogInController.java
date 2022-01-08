@@ -1,5 +1,7 @@
 package test.dmsfinal;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,10 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import test.dmsfinal.model.User;
-
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
@@ -48,19 +48,26 @@ public class LogInController implements Initializable {
     private TextField setDeadlineField;
 
     @FXML
-    ToggleGroup isUrgentRadioBtns;
+    private ToggleGroup isUrgentRadioBtns;
 
     @FXML
-    ToggleGroup setStatusRadioBtns;
+    private ToggleGroup setStatusRadioBtns;
 
     @FXML
-    RadioButton isUrgentRadioBtn;
+    private RadioButton isUrgentRadioBtn;
 
     @FXML
-    RadioButton setStatusUnsortedRadioBtn;
+    private RadioButton setStatusUnsortedRadioBtn;
 
     @FXML
-    RadioButton setStatusInProgressRadioBtn;
+    private RadioButton setStatusInProgressRadioBtn;
+
+    @FXML
+    private Label taskWarningLabel;
+
+    @FXML
+    private Label projectNameLabel;
+
 
     static User user = new User("null", "null");
 
@@ -103,29 +110,41 @@ public class LogInController implements Initializable {
 
     public void addTask(ActionEvent actionEvent) {
 
-        boolean taskUrgency = (isUrgentRadioBtns.getSelectedToggle() == isUrgentRadioBtn ? true : false);
+        if (isUrgentRadioBtns.getSelectedToggle() == null || setStatusRadioBtns.getSelectedToggle() == null ||
+                setTaskField.getText().isBlank() || setDeadlineField.getText().isBlank()) {
+            taskWarningLabel.setText("Please fill in all fields");
 
-        String taskStatus = "";
-        if (setStatusRadioBtns.getSelectedToggle() == setStatusUnsortedRadioBtn) {
-            taskStatus = "unsorted";
-        } else if (setStatusRadioBtns.getSelectedToggle() == setStatusInProgressRadioBtn) {
-            taskStatus = "in_progress";
         } else {
-            taskStatus = "finished";
+            boolean taskUrgency = (isUrgentRadioBtns.getSelectedToggle() == isUrgentRadioBtn ? true : false);
+
+            String taskStatus = "";
+            if (setStatusRadioBtns.getSelectedToggle() == setStatusUnsortedRadioBtn) {
+                taskStatus = "unsorted";
+            } else if (setStatusRadioBtns.getSelectedToggle() == setStatusInProgressRadioBtn) {
+                taskStatus = "in_progress";
+            } else {
+                taskStatus = "finished";
+            }
+
+            JavaPostgres.writeTaskToDatabase(
+                    setTaskField.getText(),
+                    setDeadlineField.getText(),
+                    taskUrgency,
+                    taskStatus,
+                    user.getProjectName());
+
+            setTaskField.clear();
+            setDeadlineField.clear();
+            isUrgentRadioBtns.getSelectedToggle().setSelected(false);
+            setStatusRadioBtns.getSelectedToggle().setSelected(false);
         }
+    }
 
-        JavaPostgres.writeTaskToDatabase(
-                setTaskField.getText(),
-                setDeadlineField.getText(),
-                taskUrgency,
-                taskStatus,
-                user.getProjectName());
 
-        setTaskField.clear();
-        setDeadlineField.clear();
-        isUrgentRadioBtns.getSelectedToggle().setSelected(false);
-        setStatusRadioBtns.getSelectedToggle().setSelected(false);
+    public void startApp(ActionEvent actionEvent) {
+        projectNameLabel.setText(user.projectName.toUpperCase(Locale.ROOT));
 
+        // retrieve tasks
     }
 
     @Override
