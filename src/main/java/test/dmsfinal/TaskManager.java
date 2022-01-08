@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class TaskManager extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
         stage.setTitle("Task Manager 1.0");
         stage.setScene(new Scene(root, 800, 500));
+        stage.getIcons().add(new Image("https://img.icons8.com/fluency/48/000000/news.png"));
         stage.show();
     }
 
