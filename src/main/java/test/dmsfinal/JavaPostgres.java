@@ -12,15 +12,18 @@ public class JavaPostgres {
         String user = "postgres";
         String pgPassword = "cantremembershit88";
 
-        String query = "INSERT INTO users.users(username, password, project_name) VALUES(?, ?, ?)";
+        String query2 = "INSERT INTO users.users(username, pass, project_name) VALUES('" + userName + "', '" +
+                userPassword + "', '" + projectName + "')";
+        String query1 = "INSERT INTO users.projects(project_name) VALUES('" + projectName + "')";
 
         try (Connection con = DriverManager.getConnection(url, user, pgPassword);
-             PreparedStatement pst = con.prepareStatement(query)) {
+             PreparedStatement pst = con.prepareStatement(query1);
+             PreparedStatement pst2 = con.prepareStatement(query2)
 
-            pst.setString(1, userName);
-            pst.setString(2, userPassword);
-            pst.setString(3, projectName);
+        ) {
+
             pst.executeUpdate();
+            pst2.executeUpdate();
             System.out.println("User account successfully created.");
 
         } catch (SQLException ex) {
@@ -29,25 +32,22 @@ public class JavaPostgres {
         }
     }
 
+
     public static Boolean validateLogIn(String userName, String userPassword, String projectName) {
-        String url = "jdbc:postgresql://localhost:5432/TaskManager";
-        String user = "postgres";
-        String pgPassword = "cantremembershit88";
 
         String query = "SELECT count(1) FROM users.users WHERE username = '"
-                + userName + "' AND password = '" + userPassword + "' AND project_name = '" + projectName + "'";
+                + userName + "' AND pass = '" + userPassword + "' AND project_name = '" + projectName + "'";
 
         boolean isSignedUp = true;
 
-        try (Connection con = DriverManager.getConnection(url, user, pgPassword);
+        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TaskManager",
+                "postgres", "cantremembershit88");
              PreparedStatement pst = con.prepareStatement(query)) {
 
             ResultSet res = pst.executeQuery();
 
             while (res.next()) {
-                if (res.getInt(1) == 1) {
-                    isSignedUp = true;
-                } else isSignedUp = false;
+                isSignedUp = res.getInt(1) == 1;
             }
 
         } catch (SQLException ex) {
@@ -55,5 +55,26 @@ public class JavaPostgres {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
         return isSignedUp;
+    }
+
+
+    public static void writeTaskToDatabase(String taskName, String taskDeadline, boolean isUrgent,
+                                           String taskStatus, String projectName) {
+
+        String query = "INSERT INTO users.tasks (task, due_to, is_urgent, status, project_name) VALUES ('" +
+                taskName + "', '" + taskDeadline + "', '" + isUrgent + "', '" + taskStatus + "', '"
+                + projectName + "')";
+
+        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TaskManager",
+                "postgres", "cantremembershit88");
+             PreparedStatement pst = con.prepareStatement(query);
+        ) {
+            pst.executeUpdate();
+            System.out.println("Task successfully created");
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(JavaPostgres.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+        }
     }
 }
