@@ -12,8 +12,8 @@ public class TaskManager extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("TaskManager.fxml"));
-        stage.setTitle("Hello!");
+        Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
+        stage.setTitle("Task Manager 1.0");
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
     }

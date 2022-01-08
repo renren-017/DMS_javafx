@@ -158,59 +158,62 @@
          </padding></VBox>
       <HBox prefWidth="570.0" style="-fx-background-color: #e2e2e2;">
          <children>
-            <VBox fx:id="unsorted" alignment="TOP_CENTER" prefWidth="190.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
+            <VBox alignment="CENTER" prefWidth="190.0">
                <children>
                   <Label text="UNSORTED">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
                   </Label>
+                  <VBox fx:id="unsorted" alignment="TOP_CENTER" prefHeight="470.0" prefWidth="190.0" spacing="5.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </VBox.margin>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-               </padding>
             </VBox>
-            <VBox fx:id="in_progress" alignment="TOP_CENTER" prefWidth="190.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
-               <HBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
+            <VBox alignment="CENTER" prefWidth="190.0">
                <children>
                   <Label text="IN PROCESS">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
+                  <VBox fx:id="in_progress" alignment="TOP_CENTER" prefHeight="470.0" prefWidth="190.0" spacing="5.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets right="5.0" />
+                     </VBox.margin>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-               </padding>
             </VBox>
-            <VBox fx:id="finished" alignment="TOP_CENTER" prefWidth="190.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
-               <HBox.margin>
-                  <Insets bottom="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="190.0">
                <children>
                   <Label text="FINISHED">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </Label>
+                  <VBox fx:id="finished" alignment="TOP_CENTER" prefHeight="470.0" prefWidth="190.0" spacing="5.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets right="5.0" />
+                     </VBox.margin>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-               </padding>
             </VBox>
          </children></HBox>
    </children>

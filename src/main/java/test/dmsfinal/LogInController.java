@@ -1,6 +1,7 @@
 package test.dmsfinal;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,10 +21,7 @@ import javafx.stage.Stage;
 import test.dmsfinal.model.Task;
 import test.dmsfinal.model.User;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class LogInController implements Initializable {
 
@@ -163,6 +161,10 @@ public class LogInController implements Initializable {
     public void startApp(ActionEvent actionEvent) {
         projectNameLabel.setText(user.projectName.toUpperCase(Locale.ROOT));
 
+        unsorted.getChildren().clear();
+        in_progress.getChildren().clear();
+        finished.getChildren().clear();
+
         int listLength = ((List<String>) JavaPostgres.retrieveTasksFromDatabase("Task Manager",
                 1)).size();
 
@@ -177,19 +179,22 @@ public class LogInController implements Initializable {
             boolean taskUrgency = (taskProps.get(2).equals("t"));
             String taskStatus = taskProps.get(3);
 
-            if (taskStatus == "unsorted") {
-                Task task = new Task(taskName, taskDeadline, taskUrgency, unsorted);
-                task.draw();
-            } else if (taskStatus == "in_progress") {
-                Task task = new Task(taskName, taskDeadline, taskUrgency, in_progress);
-                task.draw();
+            Task task = new Task(taskName, taskDeadline, taskStatus, taskUrgency, unsorted, unsorted, in_progress,
+                    finished, user.projectName);
+
+
+
+            if (Objects.equals(taskStatus, "unsorted")) {
+                task.setTaskVBox(unsorted);
+                task.draw(false, true, true);
+            } else if (Objects.equals(taskStatus, "in_progress")) {
+                task.setTaskVBox(in_progress);
+                task.draw(true, false, true);
             } else {
-                Task task = new Task(taskName, taskDeadline, taskUrgency, finished);
-                task.draw();
+                task.setTaskVBox(finished);
+                task.draw(true, true, false);
             }
-
         }
-
     }
 
     @Override

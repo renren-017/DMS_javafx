@@ -96,7 +96,6 @@ public class JavaPostgres {
             while (rsData.next()) {
                 taskProp.add(rsData.getString(column_idx));
             }
-
             return taskProp;
 
 
@@ -106,4 +105,24 @@ public class JavaPostgres {
         }
         return taskProp;
     }
+
+    public static void deleteTaskFromDatabase(String taskName, String taskDeadline, String projectName) {
+
+        String query = "DELETE FROM users.tasks WHERE task = '" + taskName + "' AND due_to = '" +
+                taskDeadline + "' AND project_name = '" + projectName + "'";
+
+        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TaskManager",
+                "postgres", "cantremembershit88");
+             PreparedStatement pst = con.prepareStatement(query);
+        ) {
+            pst.executeUpdate();
+            System.out.println("Task successfully deleted");
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(JavaPostgres.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
 }
+
+
