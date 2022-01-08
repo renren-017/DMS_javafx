@@ -136,7 +136,7 @@
                   <Font name="System Bold" size="11.0" />
                </font>
             </Label>
-            <Button fx:id="startBtn" mnemonicParsing="false" onAction="#startApp" prefHeight="20.0" prefWidth="210.0" style="-fx-background-color: #e2e2e2; -fx-background-radius: 0;" text="Start">
+            <Button fx:id="startBtn" mnemonicParsing="false" onAction="#startApp" prefHeight="20.0" prefWidth="210.0" style="-fx-background-color: #e2e2e2; -fx-background-radius: 0;" text="Start/Restart">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
