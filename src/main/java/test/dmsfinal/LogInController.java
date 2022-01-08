@@ -1,17 +1,27 @@
 package test.dmsfinal;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import test.dmsfinal.model.Task;
 import test.dmsfinal.model.User;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -68,6 +78,15 @@ public class LogInController implements Initializable {
     @FXML
     private Label projectNameLabel;
 
+    @FXML
+    private VBox unsorted;
+
+    @FXML
+    private VBox in_progress;
+
+    @FXML
+    private VBox finished;
+
 
     static User user = new User("null", "null");
 
@@ -115,9 +134,9 @@ public class LogInController implements Initializable {
             taskWarningLabel.setText("Please fill in all fields");
 
         } else {
-            boolean taskUrgency = (isUrgentRadioBtns.getSelectedToggle() == isUrgentRadioBtn ? true : false);
+            boolean taskUrgency = (isUrgentRadioBtns.getSelectedToggle() == isUrgentRadioBtn);
 
-            String taskStatus = "";
+            String taskStatus;
             if (setStatusRadioBtns.getSelectedToggle() == setStatusUnsortedRadioBtn) {
                 taskStatus = "unsorted";
             } else if (setStatusRadioBtns.getSelectedToggle() == setStatusInProgressRadioBtn) {
@@ -144,7 +163,33 @@ public class LogInController implements Initializable {
     public void startApp(ActionEvent actionEvent) {
         projectNameLabel.setText(user.projectName.toUpperCase(Locale.ROOT));
 
-        // retrieve tasks
+        int listLength = ((List<String>) JavaPostgres.retrieveTasksFromDatabase("Task Manager",
+                1)).size();
+
+        for (int j = 0; j < listLength; j++) {
+            List<String> taskProps = new ArrayList<>();
+            for (int i = 2; i < 6; i++) {
+                taskProps.add(((List<String>) JavaPostgres.retrieveTasksFromDatabase("Task Manager",
+                        i)).get(j));
+            }
+            String taskName = taskProps.get(0);
+            String taskDeadline = taskProps.get(1);
+            boolean taskUrgency = (taskProps.get(2).equals("t"));
+            String taskStatus = taskProps.get(3);
+
+            if (taskStatus == "unsorted") {
+                Task task = new Task(taskName, taskDeadline, taskUrgency, unsorted);
+                task.draw();
+            } else if (taskStatus == "in_progress") {
+                Task task = new Task(taskName, taskDeadline, taskUrgency, in_progress);
+                task.draw();
+            } else {
+                Task task = new Task(taskName, taskDeadline, taskUrgency, finished);
+                task.draw();
+            }
+
+        }
+
     }
 
     @Override

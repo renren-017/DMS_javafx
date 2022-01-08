@@ -1,11 +1,14 @@
 package test.dmsfinal;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class JavaPostgres {
+
 
     public static void writeUserToDatabase(String userName, String userPassword, String projectName) {
         String url = "jdbc:postgresql://localhost:5432/TaskManager";
@@ -76,5 +79,31 @@ public class JavaPostgres {
             Logger lgr = Logger.getLogger(JavaPostgres.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
+    }
+
+    public static Object retrieveTasksFromDatabase(String project_name, Integer column_idx) {
+
+        String query = "SELECT * FROM users.tasks WHERE project_name = '" + project_name + "'";
+
+        List<String> taskProp = new ArrayList<String>();
+
+        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TaskManager",
+                "postgres", "cantremembershit88");
+             PreparedStatement pst = con.prepareStatement(query);
+        ) {
+
+            ResultSet rsData = pst.executeQuery();
+            while (rsData.next()) {
+                taskProp.add(rsData.getString(column_idx));
+            }
+
+            return taskProp;
+
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(JavaPostgres.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return taskProp;
     }
 }

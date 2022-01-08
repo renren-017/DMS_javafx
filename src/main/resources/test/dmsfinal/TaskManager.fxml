@@ -158,20 +158,59 @@
          </padding></VBox>
       <HBox prefWidth="570.0" style="-fx-background-color: #e2e2e2;">
          <children>
-            <VBox prefWidth="190.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
+            <VBox fx:id="unsorted" alignment="TOP_CENTER" prefWidth="190.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
                <HBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
+               <children>
+                  <Label text="UNSORTED">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
             </VBox>
-            <VBox prefWidth="190.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
+            <VBox fx:id="in_progress" alignment="TOP_CENTER" prefWidth="190.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
                <HBox.margin>
-                  <Insets bottom="8.0" right="8.0" top="8.0" />
+                  <Insets bottom="5.0" right="5.0" top="5.0" />
                </HBox.margin>
+               <children>
+                  <Label text="IN PROCESS">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
             </VBox>
-            <VBox prefWidth="190.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
+            <VBox fx:id="finished" alignment="TOP_CENTER" prefWidth="190.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
                <HBox.margin>
-                  <Insets bottom="8.0" right="8.0" top="8.0" />
+                  <Insets bottom="5.0" right="5.0" top="5.0" />
                </HBox.margin>
+               <children>
+                  <Label text="FINISHED">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </padding>
             </VBox>
          </children></HBox>
    </children>
