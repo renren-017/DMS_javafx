@@ -70,7 +70,7 @@ public class JavaPostgres {
 
         try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TaskManager",
                 "postgres", "cantremembershit88");
-             PreparedStatement pst = con.prepareStatement(query);
+             PreparedStatement pst = con.prepareStatement(query)
         ) {
             pst.executeUpdate();
             System.out.println("Task successfully created");
@@ -85,11 +85,11 @@ public class JavaPostgres {
 
         String query = "SELECT * FROM users.tasks WHERE project_name = '" + project_name + "'";
 
-        List<String> taskProp = new ArrayList<String>();
+        List<String> taskProp = new ArrayList<>();
 
         try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TaskManager",
                 "postgres", "cantremembershit88");
-             PreparedStatement pst = con.prepareStatement(query);
+             PreparedStatement pst = con.prepareStatement(query)
         ) {
 
             ResultSet rsData = pst.executeQuery();
@@ -113,7 +113,7 @@ public class JavaPostgres {
 
         try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TaskManager",
                 "postgres", "cantremembershit88");
-             PreparedStatement pst = con.prepareStatement(query);
+             PreparedStatement pst = con.prepareStatement(query)
         ) {
             pst.executeUpdate();
             System.out.println("Task successfully deleted");
@@ -123,6 +123,27 @@ public class JavaPostgres {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
+
+
+    public static void updateTaskStatusInDatabase(String taskName, String taskDeadline, String projectName,
+                                                  String taskStatus) {
+
+        String query = "UPDATE users.tasks SET status = '" + taskStatus + "' WHERE task = '" + taskName + "' " +
+                "AND due_to = '" + taskDeadline + "' AND project_name = '" + projectName + "'";
+
+        try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/TaskManager",
+                "postgres", "cantremembershit88");
+             PreparedStatement pst = con.prepareStatement(query)
+        ) {
+            pst.executeUpdate();
+            System.out.println("Task status successfully updated");
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(JavaPostgres.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
+
 }
 
 

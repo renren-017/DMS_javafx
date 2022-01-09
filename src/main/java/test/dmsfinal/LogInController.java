@@ -1,22 +1,13 @@
 package test.dmsfinal;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import test.dmsfinal.model.Task;
 import test.dmsfinal.model.User;
@@ -154,24 +145,23 @@ public class LogInController implements Initializable {
             setDeadlineField.clear();
             isUrgentRadioBtns.getSelectedToggle().setSelected(false);
             setStatusRadioBtns.getSelectedToggle().setSelected(false);
+
+            vBoxesUpdate();
         }
     }
 
-
-    public void startApp(ActionEvent actionEvent) {
-        projectNameLabel.setText(user.projectName.toUpperCase(Locale.ROOT));
-
+    private void vBoxesUpdate() {
         unsorted.getChildren().clear();
         in_progress.getChildren().clear();
         finished.getChildren().clear();
 
-        int listLength = ((List<String>) JavaPostgres.retrieveTasksFromDatabase("Task Manager",
+        int listLength = ((List<String>) JavaPostgres.retrieveTasksFromDatabase(user.projectName,
                 1)).size();
 
         for (int j = 0; j < listLength; j++) {
             List<String> taskProps = new ArrayList<>();
             for (int i = 2; i < 6; i++) {
-                taskProps.add(((List<String>) JavaPostgres.retrieveTasksFromDatabase("Task Manager",
+                taskProps.add(((List<String>) JavaPostgres.retrieveTasksFromDatabase(user.projectName,
                         i)).get(j));
             }
             String taskName = taskProps.get(0);
@@ -182,19 +172,15 @@ public class LogInController implements Initializable {
             Task task = new Task(taskName, taskDeadline, taskStatus, taskUrgency, unsorted, unsorted, in_progress,
                     finished, user.projectName);
 
-
-
-            if (Objects.equals(taskStatus, "unsorted")) {
-                task.setTaskVBox(unsorted);
-                task.draw(false, true, true);
-            } else if (Objects.equals(taskStatus, "in_progress")) {
-                task.setTaskVBox(in_progress);
-                task.draw(true, false, true);
-            } else {
-                task.setTaskVBox(finished);
-                task.draw(true, true, false);
-            }
+            Task.vBoxFill(taskStatus, task, unsorted, in_progress, finished);
         }
+    }
+
+
+    public void startApp(ActionEvent actionEvent) {
+        projectNameLabel.setText(user.projectName.toUpperCase(Locale.ROOT));
+
+        vBoxesUpdate();
     }
 
     @Override

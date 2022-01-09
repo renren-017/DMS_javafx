@@ -1,29 +1,28 @@
 package test.dmsfinal.model;
 
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import test.dmsfinal.JavaPostgres;
-import test.dmsfinal.LogInController;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Task {
-    private String taskName;
-    private String taskDeadline;
-    private String taskStatus;
-    private Boolean isUrgent;
-    private String projectName;
+    private final String taskName;
+    private final String taskDeadline;
+    private final Boolean isUrgent;
+    private final String projectName;
     public Button deleteBtn;
-    private VBox unsorted;
-    private VBox inProcess;
-    private VBox finished;
+    private final VBox unsorted;
+    private final VBox inProcess;
+    private final VBox finished;
     private VBox taskVBox;
 
 
@@ -41,7 +40,6 @@ public class Task {
         this.finished = finished;
         this.taskVBox = taskVBox;
         this.projectName = projectName;
-        this.taskStatus = taskStatus;
     }
 
 
@@ -82,18 +80,16 @@ public class Task {
         deleteBtn.setBackground(new Background (new BackgroundFill(Color.color(0.88, 0.88, 0.88),
                 new CornerRadii(0), new Insets(0,4, 0, 0))));
         deleteBtn.setFont(Font.font("System", FontWeight.NORMAL, 10));
-        deleteBtn.setOnAction( e -> {
-            JavaPostgres.deleteTaskFromDatabase(taskName, taskDeadline, projectName);
-        });
+        deleteBtn.setOnAction( e -> JavaPostgres.deleteTaskFromDatabase(taskName, taskDeadline, projectName));
         taskBar.getChildren().add(btns);
         btns.getChildren().add(deleteBtn);
 
         if (makeUnsorted) {
             Button makeUnsortedBtn = new Button("");
             if (taskVBox == finished) {
-                makeUnsortedBtn.setText("<-");
-            } else { makeUnsortedBtn.setText("<<-"); }
-            btnDesign(makeUnsortedBtn, unsorted);
+                makeUnsortedBtn.setText("<<-");
+            } else { makeUnsortedBtn.setText("<-"); }
+            btnCommon(makeUnsortedBtn, unsorted);
             btns.getChildren().add(makeUnsortedBtn);
         }
 
@@ -102,7 +98,7 @@ public class Task {
             if (taskVBox == unsorted) {
                 makeInProcessBtn.setText("->");
             } else { makeInProcessBtn.setText("<-"); }
-            btnDesign(makeInProcessBtn, unsorted);
+            btnCommon(makeInProcessBtn, inProcess);
             btns.getChildren().add(makeInProcessBtn);
         }
 
@@ -111,24 +107,70 @@ public class Task {
             if (taskVBox == unsorted) {
                 makeFinishedBtn.setText("->>");
             } else { makeFinishedBtn.setText("->"); }
-            btnDesign(makeFinishedBtn, finished);
+            btnCommon(makeFinishedBtn, finished);
             btns.getChildren().add(makeFinishedBtn);
         }
 
 
     }
 
-    private void btnDesign(Button selectedBtn, VBox selectedVbox) {
+    private void updateTasks() {
+
+        unsorted.getChildren().clear();
+        inProcess.getChildren().clear();
+        finished.getChildren().clear();
+
+        int listLength = ((List<String>) JavaPostgres.retrieveTasksFromDatabase(projectName,
+                1)).size();
+
+        for (int j = 0; j < listLength; j++) {
+            List<String> taskProps = new ArrayList<>();
+            for (int i = 2; i < 6; i++) {
+                taskProps.add(((List<String>) JavaPostgres.retrieveTasksFromDatabase(projectName,
+                        i)).get(j));
+            }
+            String taskName = taskProps.get(0);
+            String taskDeadline = taskProps.get(1);
+            boolean taskUrgency = (taskProps.get(2).equals("t"));
+            String taskStatus = taskProps.get(3);
+
+            Task task = new Task(taskName, taskDeadline, taskStatus, taskUrgency, unsorted, unsorted, inProcess,
+                    finished, projectName);
+
+            vBoxFill(taskStatus, task, unsorted, inProcess, finished);
+        }
+    }
+
+    public static void vBoxFill(String taskStatus, Task task, VBox unsorted, VBox inProcess, VBox finished) {
+        if (Objects.equals(taskStatus, "unsorted")) {
+            task.setTaskVBox(unsorted);
+            task.draw(false, true, true);
+        } else if (Objects.equals(taskStatus, "in_progress")) {
+            task.setTaskVBox(inProcess);
+            task.draw(true, false, true);
+        } else {
+            task.setTaskVBox(finished);
+            task.draw(true, true, false);
+        }
+    }
+
+    private void btnCommon(Button selectedBtn, VBox selectedVbox) {
         selectedBtn.setBackground(new Background(new BackgroundFill(Color.color(0.88, 0.88, 0.88),
                 new CornerRadii(0), new Insets(0, 4, 0, 0))));
         selectedBtn.setFont(Font.font("System", FontWeight.NORMAL, 10));
+
         selectedBtn.setOnAction(e -> {
             setTaskVBox(selectedVbox);
             if (selectedVbox == unsorted) {
-                draw(false, true, true);
+                JavaPostgres.updateTaskStatusInDatabase(taskName, taskDeadline, projectName, "unsorted");
+                updateTasks();
             } else if (selectedVbox == inProcess) {
-                draw(true, false, true);
-            } else draw(true, true, false);
+                JavaPostgres.updateTaskStatusInDatabase(taskName, taskDeadline, projectName, "in_progress");
+                updateTasks();
+            } else {
+                JavaPostgres.updateTaskStatusInDatabase(taskName, taskDeadline, projectName, "finished");
+                updateTasks();
+            }
         });
     }
 }

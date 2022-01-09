@@ -5,216 +5,223 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.dmsfinal.LogInController">
-   <children>
-      <VBox alignment="TOP_CENTER" prefWidth="230.0" style="-fx-background-color: #006989;">
-         <children>
-            <Label fx:id="projectNameLabel" text="CLICK START" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <Label lineSpacing="1.0" text="TASK" textFill="#e2e2e2">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="11.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets></Label>
-            <TextField fx:id="setTaskField" style="-fx-background-radius: 0;">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></TextField>
-            <Label text="DUE  TO" textFill="#e2e2e2">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="11.0" />
-               </font></Label>
-            <TextField fx:id="setDeadlineField" style="-fx-background-radius: 0;">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin></TextField>
-            <Label text="IS IT URGENT?" textFill="#e2e2e2">
-               <font>
-                  <Font name="System Bold" size="11.0" />
-               </font></Label>
-            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="210.0">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+      prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="test.dmsfinal.LogInController">
+   <VBox alignment="TOP_CENTER" prefWidth="230.0" style="-fx-background-color: #006989;">
+      <padding>
+         <Insets left="10.0" right="10.0" top="20.0"/>
+      </padding>
+      <Label fx:id="projectNameLabel" text="CLICK START" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0"/>
+         </font>
+      </Label>
+      <Label lineSpacing="1.0" text="TASK" textFill="#e2e2e2">
+         <VBox.margin>
+            <Insets bottom="5.0"/>
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="11.0"/>
+         </font>
+         <opaqueInsets>
+            <Insets/>
+         </opaqueInsets>
+      </Label>
+      <TextField fx:id="setTaskField" style="-fx-background-radius: 0;">
+         <VBox.margin>
+            <Insets bottom="20.0"/>
+         </VBox.margin>
+      </TextField>
+      <Label text="DUE  TO" textFill="#e2e2e2">
+         <VBox.margin>
+            <Insets bottom="5.0"/>
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="11.0"/>
+         </font>
+      </Label>
+      <TextField fx:id="setDeadlineField" style="-fx-background-radius: 0;">
+         <VBox.margin>
+            <Insets bottom="20.0"/>
+         </VBox.margin>
+      </TextField>
+      <Label text="IS IT URGENT?" textFill="#e2e2e2">
+         <font>
+            <Font name="System Bold" size="11.0"/>
+         </font>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="34.0" prefWidth="210.0">
 
-               <children>
-                  <RadioButton fx:id="isUrgentRadioBtn" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" style="-fx-border-color: #e2e2e2; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 3px; -fx-background-color: #e2e2e2; -fx-background-radius: 15px;" text="YES" textFill="#ea4367">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="isUrgentRadioBtns" />
-                     </toggleGroup>
-                     <font>
-                        <Font name="System Bold" size="10.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="isNotUrgentRadioBtn" mnemonicParsing="false" prefHeight="22.0" prefWidth="62.0" style="-fx-border-color: #e2e2e2; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 3px; -fx-background-color: #e2e2e2; -fx-background-radius: 15px;" text="NO" textFill="#0a516f" toggleGroup="$isUrgentRadioBtns">
-                     <font>
-                        <Font name="System Bold" size="10.0" />
-                     </font>
-                  </RadioButton>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </HBox>
-            <Label text="STATUS OF THE TASK IS" textFill="#e5e2e2">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+         <VBox.margin>
+            <Insets bottom="20.0"/>
+         </VBox.margin>
+         <RadioButton fx:id="isUrgentRadioBtn" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0"
+                      style="-fx-border-color: #e2e2e2; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 3px; -fx-background-color: #e2e2e2; -fx-background-radius: 15px;"
+                      text="YES" textFill="#ea4367">
+            <HBox.margin>
+               <Insets right="20.0"/>
+            </HBox.margin>
+            <toggleGroup>
+               <ToggleGroup fx:id="isUrgentRadioBtns"/>
+            </toggleGroup>
+            <font>
+               <Font name="System Bold" size="10.0"/>
+            </font>
+         </RadioButton>
+         <RadioButton fx:id="isNotUrgentRadioBtn" mnemonicParsing="false" prefHeight="22.0" prefWidth="62.0"
+                      style="-fx-border-color: #e2e2e2; -fx-border-width: 2px; -fx-border-radius: 15px; -fx-padding: 3px; -fx-background-color: #e2e2e2; -fx-background-radius: 15px;"
+                      text="NO" textFill="#0a516f" toggleGroup="$isUrgentRadioBtns">
+            <font>
+               <Font name="System Bold" size="10.0"/>
+            </font>
+         </RadioButton>
+      </HBox>
+      <Label text="STATUS OF THE TASK IS" textFill="#e5e2e2">
+         <VBox.margin>
+            <Insets bottom="5.0"/>
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="11.0"/>
+         </font>
+      </Label>
+      <VBox prefHeight="85.0" prefWidth="210.0">
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <VBox.margin>
+               <Insets bottom="10.0"/>
+            </VBox.margin>
+            <RadioButton fx:id="setStatusUnsortedRadioBtn" contentDisplay="CENTER" mnemonicParsing="false"
+                         prefHeight="23.0" prefWidth="130.0"
+                         style="-fx-padding: 3px; -fx-border-width: 2px; -fx-background-color: #e2e2e2; -fx-background-radius: 15px;"
+                         text="UNSORTED" textAlignment="CENTER" textFill="#0a516f">
+               <toggleGroup>
+                  <ToggleGroup fx:id="setStatusRadioBtns"/>
+               </toggleGroup>
                <font>
-                  <Font name="System Bold" size="11.0" />
+                  <Font name="System Bold" size="11.0"/>
                </font>
-            </Label>
-            <VBox prefHeight="85.0" prefWidth="210.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <RadioButton fx:id="setStatusUnsortedRadioBtn" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="23.0" prefWidth="130.0" style="-fx-padding: 3px; -fx-border-width: 2px; -fx-background-color: #e2e2e2; -fx-background-radius: 15px;" text="UNSORTED" textAlignment="CENTER" textFill="#0a516f">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="setStatusRadioBtns" />
-                           </toggleGroup>
-                           <font>
-                              <Font name="System Bold" size="11.0" />
-                           </font>
-                        </RadioButton>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <RadioButton fx:id="setStatusInProgressRadioBtn" mnemonicParsing="false" prefHeight="23.0" prefWidth="130.0" style="-fx-background-color: #e2e2e2; -fx-background-radius: 15px; -fx-padding: 3px;" text="IN PROGRESS" textFill="#0a516f" toggleGroup="$setStatusRadioBtns">
-                           <font>
-                              <Font name="System Bold" size="11.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </RadioButton>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <RadioButton fx:id="setStatusFinishedRadioBtn" mnemonicParsing="false" prefHeight="23.0" prefWidth="130.0" style="-fx-background-color: #e2e2e2; -fx-padding: 3px; -fx-background-radius: 15px;" text="FINISHED" textFill="#0a516f" toggleGroup="$setStatusRadioBtns">
-                           <font>
-                              <Font name="System Bold" size="11.0" />
-                           </font>
-                        </RadioButton>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-            </VBox>
-            <Button fx:id="addTaskBtn" mnemonicParsing="false" onAction="#addTask" style="-fx-background-radius: 0; -fx-background-color: #DE6C83;" text="ADD TASK" textFill="#fdfdfd">
+            </RadioButton>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <VBox.margin>
+               <Insets bottom="10.0"/>
+            </VBox.margin>
+            <RadioButton fx:id="setStatusInProgressRadioBtn" mnemonicParsing="false" prefHeight="23.0"
+                         prefWidth="130.0"
+                         style="-fx-background-color: #e2e2e2; -fx-background-radius: 15px; -fx-padding: 3px;"
+                         text="IN PROGRESS" textFill="#0a516f" toggleGroup="$setStatusRadioBtns">
                <font>
-                  <Font name="System Bold" size="11.0" />
+                  <Font name="System Bold" size="11.0"/>
                </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin></Button>
-            <Label fx:id="taskWarningLabel" textFill="#f0e45f">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
+               <HBox.margin>
+                  <Insets/>
+               </HBox.margin>
+            </RadioButton>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <VBox.margin>
+               <Insets/>
+            </VBox.margin>
+            <RadioButton fx:id="setStatusFinishedRadioBtn" mnemonicParsing="false" prefHeight="23.0"
+                         prefWidth="130.0"
+                         style="-fx-background-color: #e2e2e2; -fx-padding: 3px; -fx-background-radius: 15px;"
+                         text="FINISHED" textFill="#0a516f" toggleGroup="$setStatusRadioBtns">
                <font>
-                  <Font name="System Bold" size="11.0" />
+                  <Font name="System Bold" size="11.0"/>
                </font>
-            </Label>
-            <Button fx:id="startBtn" mnemonicParsing="false" onAction="#startApp" prefHeight="20.0" prefWidth="210.0" style="-fx-background-color: #e2e2e2; -fx-background-radius: 0;" text="Start/Restart">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="11.0" />
-               </font>
-            </Button>
-            <Button fx:id="logOutBtn" mnemonicParsing="false" onAction="#logOut" prefHeight="20.0" prefWidth="210.0" style="-fx-background-radius: 0; -fx-background-color: #A3BAC3;" text="Log Out">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="11.0" />
-               </font>
-            </Button>
-         </children>
-         <padding>
-            <Insets left="10.0" right="10.0" top="20.0" />
-         </padding></VBox>
-      <HBox prefWidth="570.0" style="-fx-background-color: #e2e2e2;">
-         <children>
-            <VBox alignment="CENTER" prefWidth="190.0">
-               <children>
-                  <Label text="UNSORTED">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <VBox fx:id="unsorted" alignment="TOP_CENTER" prefHeight="470.0" prefWidth="190.0" spacing="5.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
-                     <padding>
-                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                  </VBox>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefWidth="190.0">
-               <children>
-                  <Label text="IN PROCESS">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Label>
-                  <VBox fx:id="in_progress" alignment="TOP_CENTER" prefHeight="470.0" prefWidth="190.0" spacing="5.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
-                     <padding>
-                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets right="5.0" />
-                     </VBox.margin>
-                  </VBox>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="190.0">
-               <children>
-                  <Label text="FINISHED">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Label>
-                  <VBox fx:id="finished" alignment="TOP_CENTER" prefHeight="470.0" prefWidth="190.0" spacing="5.0" style="-fx-background-color: #fff; -fx-background-radius: 15;">
-                     <padding>
-                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets right="5.0" />
-                     </VBox.margin>
-                  </VBox>
-               </children>
-            </VBox>
-         </children></HBox>
-   </children>
+            </RadioButton>
+         </HBox>
+      </VBox>
+      <Button fx:id="addTaskBtn" mnemonicParsing="false" onAction="#addTask"
+              style="-fx-background-radius: 0; -fx-background-color: #DE6C83;" text="ADD TASK" textFill="#fdfdfd">
+         <font>
+            <Font name="System Bold" size="11.0"/>
+         </font>
+         <VBox.margin>
+            <Insets top="20.0"/>
+         </VBox.margin>
+      </Button>
+      <Label fx:id="taskWarningLabel" textFill="#f0e45f">
+         <VBox.margin>
+            <Insets bottom="5.0"/>
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="11.0"/>
+         </font>
+      </Label>
+      <Button fx:id="startBtn" mnemonicParsing="false" onAction="#startApp" prefHeight="20.0" prefWidth="210.0"
+              style="-fx-background-color: #e2e2e2; -fx-background-radius: 0;" text="Start/Restart">
+         <VBox.margin>
+            <Insets top="20.0"/>
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="11.0"/>
+         </font>
+      </Button>
+      <Button fx:id="logOutBtn" mnemonicParsing="false" onAction="#logOut" prefHeight="20.0" prefWidth="210.0"
+              style="-fx-background-radius: 0; -fx-background-color: #A3BAC3;" text="Log Out">
+         <VBox.margin>
+            <Insets top="5.0"/>
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="11.0"/>
+         </font>
+      </Button>
+   </VBox>
+   <HBox prefWidth="570.0" style="-fx-background-color: #e2e2e2;">
+      <VBox alignment="CENTER" prefWidth="190.0">
+         <Label text="UNSORTED">
+            <font>
+               <Font name="System Bold" size="13.0"/>
+            </font>
+         </Label>
+         <VBox fx:id="unsorted" alignment="TOP_CENTER" prefHeight="470.0" prefWidth="190.0" spacing="5.0"
+               style="-fx-background-color: #fff; -fx-background-radius: 15;">
+            <padding>
+               <Insets bottom="10.0" left="5.0" right="5.0" top="10.0"/>
+            </padding>
+            <VBox.margin>
+               <Insets left="5.0" right="5.0"/>
+            </VBox.margin>
+         </VBox>
+      </VBox>
+      <VBox alignment="CENTER" prefWidth="190.0">
+         <Label text="IN PROCESS">
+            <font>
+               <Font name="System Bold" size="13.0"/>
+            </font>
+            <VBox.margin>
+               <Insets/>
+            </VBox.margin>
+         </Label>
+         <VBox fx:id="in_progress" alignment="TOP_CENTER" prefHeight="470.0" prefWidth="190.0" spacing="5.0"
+               style="-fx-background-color: #fff; -fx-background-radius: 15;">
+            <padding>
+               <Insets bottom="10.0" left="5.0" right="5.0" top="10.0"/>
+            </padding>
+            <VBox.margin>
+               <Insets right="5.0"/>
+            </VBox.margin>
+         </VBox>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="190.0">
+         <Label text="FINISHED">
+            <font>
+               <Font name="System Bold" size="13.0"/>
+            </font>
+            <VBox.margin>
+               <Insets/>
+            </VBox.margin>
+         </Label>
+         <VBox fx:id="finished" alignment="TOP_CENTER" prefHeight="470.0" prefWidth="190.0" spacing="5.0"
+               style="-fx-background-color: #fff; -fx-background-radius: 15;">
+            <padding>
+               <Insets bottom="10.0" left="5.0" right="5.0" top="10.0"/>
+            </padding>
+            <VBox.margin>
+               <Insets right="5.0"/>
+            </VBox.margin>
+         </VBox>
+      </VBox>
+   </HBox>
 </HBox>
