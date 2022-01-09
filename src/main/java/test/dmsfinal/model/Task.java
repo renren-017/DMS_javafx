@@ -80,7 +80,9 @@ public class Task {
         deleteBtn.setBackground(new Background (new BackgroundFill(Color.color(0.88, 0.88, 0.88),
                 new CornerRadii(0), new Insets(0,4, 0, 0))));
         deleteBtn.setFont(Font.font("System", FontWeight.NORMAL, 10));
-        deleteBtn.setOnAction( e -> JavaPostgres.deleteTaskFromDatabase(taskName, taskDeadline, projectName));
+        deleteBtn.setOnAction( e -> {
+            JavaPostgres.deleteTaskFromDatabase(taskName, taskDeadline, projectName);
+            updateTasks();});
         taskBar.getChildren().add(btns);
         btns.getChildren().add(deleteBtn);
 
